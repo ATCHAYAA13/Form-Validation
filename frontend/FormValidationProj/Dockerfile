@@ -1,13 +1,31 @@
-FROM node:20
+# FROM node:20
 
-WORKDIR /FormValidation/frontend/FormValidationProj
+# WORKDIR /FormValidation/frontend/FormValidationProj
 
-COPY package*.json ./
+# COPY package*.json ./
+
+# RUN npm install
+
+# COPY . .
+
+# EXPOSE 3000
+
+# CMD ["npm", "start"]
+
+FROM node:18-alpine
+
+WORKDIR /app
+
+COPY package.json .
 
 RUN npm install
 
+RUN npm i -g serve
+
 COPY . .
+
+RUN npm run build
 
 EXPOSE 3000
 
-CMD ["npm", "start"]
+CMD [ "serve", "-s", "dist" ]

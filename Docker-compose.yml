@@ -3,23 +3,21 @@ version: '3.8'
 services:
   backend:
     build: 
-      context: ./backend
+      context: ./be
       dockerfile: Dockerfile
     ports:
       - "5000:5000"
     environment:
-      - DB_HOST=mysql
-      - DB_USER=root
-      - DB_PASSWORD=rootpassword
-      - DB_NAME=employee_db
-    depends_on:
-      - mysql
+      - DB_HOST=b4oy5b3is5h6dec1htr6-mysql.services.clever-cloud.com
+      - DB_USER=uno7rxvxj0nqpecb
+      - DB_PASSWORD=9WpgCnTLvsEA71yBsfTm
+      - DB_NAME=b4oy5b3is5h6dec1htr6
     networks:
       - employee-app-network
 
   frontend:
     build: 
-      context: ./frontend/FormValidationProj
+      context: ./fe
       dockerfile: Dockerfile
     ports:
       - "3000:3000"
@@ -28,21 +26,6 @@ services:
     networks:
       - employee-app-network
 
-  mysql:
-    image: mysql:8.0
-    environment:
-      - MYSQL_ROOT_PASSWORD=rootpassword
-      - MYSQL_DATABASE=employee_db
-    volumes:
-      - mysql-data:/var/lib/mysql
-      - ./backend/init.sql:/docker-entrypoint-initdb.d/init.sql
-    ports:
-      - "3306:3306"
-    networks:
-      - employee-app-network
-
-volumes:
-  mysql-data:
 
 networks:
   employee-app-network:
