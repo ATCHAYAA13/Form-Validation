@@ -3,7 +3,7 @@ version: '3.8'
 services:
   backend:
     build: 
-      context: ./be
+      context: ./backend
       dockerfile: Dockerfile
     ports:
       - "5000:5000"
@@ -17,7 +17,7 @@ services:
 
   frontend:
     build: 
-      context: ./fe
+      context: ./frontend/FormValidationProj
       dockerfile: Dockerfile
     ports:
       - "3000:3000"
