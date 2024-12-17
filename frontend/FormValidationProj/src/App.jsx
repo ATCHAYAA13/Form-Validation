@@ -74,7 +74,7 @@ function App() {
     // Submit to backend
     try {
       const res = await axios.post(
-        "http://localhost:5000/add-employee",
+        "https://form-validation-4r2d.onrender.com/add-employee",
         formData,
       );
       setMessage(res.data);
