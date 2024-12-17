@@ -1,5 +1,5 @@
 const express = require("express");
-const mysql = require("mysql2");
+const db = require("./db/db.js")
 const bodyParser = require("body-parser");
 const cors = require("cors");
 
@@ -14,21 +14,17 @@ app.use(bodyParser.json());
 //     database: "employee_management"
 // });
 
-const db = mysql.createConnection({
-    host: "localhost",
-    user: "root",
-    password: "password",
-    database: "employee",
-    port: 3307,
-    connectTimeout: 10000 
+// const db = mysql.createConnection({
+//     host: "localhost",
+//     user: "root",
+//     password: "password",
+//     database: "employee",
+//     port: 3307,
+//     connectTimeout: 10000 
   
-});
+// });
 
-db.connect(err => {
-    if (err) {console.error("MySQL connection error:", err.message);
-        process.exit(1);}//throw err;
-    console.log("MySQL Connected...");
-});
+
 
 app.post("/add-employee", (req, res) => {
     const { name, employee_id, email, phone_number, department, date_of_joining, role } = req.body;
